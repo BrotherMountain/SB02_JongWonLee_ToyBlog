@@ -15,6 +15,10 @@ public interface PostImageRepository {
 
     PostImage findByImageId(UUID id);
 
+    UUID getPostImageIdByPostId(UUID id);
+
+    UUID getPostImageIdByImageId(UUID id);
+
     void update(UUID id,UUID replaceId);
 
     void delete(UUID id);

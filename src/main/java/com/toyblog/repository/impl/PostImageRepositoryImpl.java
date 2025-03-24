@@ -35,6 +35,16 @@ public class PostImageRepositoryImpl implements PostImageRepository {
     }
 
     @Override
+    public UUID getPostImageIdByPostId(UUID id) {
+        return postImageList.stream().filter(p -> p.getPostId().equals(id)).map(PostImage::getId).findFirst().orElse(null);
+    }
+
+    @Override
+    public UUID getPostImageIdByImageId(UUID id) {
+        return postImageList.stream().filter(p -> p.getImageId().equals(id)).map(PostImage::getId).findFirst().orElse(null);
+    }
+
+    @Override
     public void update(UUID id,UUID replaceId) {
         PostImage target = findById(id);
         target.setImageId(replaceId);

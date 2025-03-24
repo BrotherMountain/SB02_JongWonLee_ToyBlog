@@ -3,11 +3,13 @@ package com.toyblog.repository.impl;
 import com.toyblog.entity.Post;
 import com.toyblog.exception.PostNotFoundException;
 import com.toyblog.repository.PostRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+@Repository
 public class PostRepositoryImpl implements PostRepository {
     List<Post> posts = new ArrayList<>();
 

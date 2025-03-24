@@ -12,7 +12,8 @@ public record FindPostResultDTO(
     UUID id,
     String title,
     String content,
-    AuthorDTO author,
+    String authorId,
+    String authorNickname,
     Instant createdAt,
     List<String> tags
 ) {
@@ -21,7 +22,8 @@ public record FindPostResultDTO(
                 .id(post.getId())
                 .title(post.getTitle())
                 .content(post.getContent().substring(0, Math.min(post.content.length(), 50)))
-                .author(author)
+                .authorId(author.id())
+                .authorNickname(author.nickname())
                 .tags(post.getTags())
                 .build();
     }
@@ -31,7 +33,8 @@ public record FindPostResultDTO(
                 .id(post.getId())
                 .title(post.getTitle())
                 .content(post.getContent())
-                .author(author)
+                .authorId(author.id())
+                .authorNickname(author.nickname())
                 .tags(post.getTags())
                 .build();
     }

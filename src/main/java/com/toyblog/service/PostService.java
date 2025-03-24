@@ -1,5 +1,6 @@
 package com.toyblog.service;
 
+import com.toyblog.dto.CreateImageRequestDTO;
 import com.toyblog.dto.CreatePostRequestDTO;
 import com.toyblog.dto.DeletePostRequestDTO;
 import com.toyblog.dto.FindPostResultDTO;
@@ -8,10 +9,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 public interface PostService {
-    Post write(String token, CreatePostRequestDTO requestDTO);
+    Post write(String token, CreatePostRequestDTO requestDTO, List<Optional<CreateImageRequestDTO>> optionalImageList);
 
     Map<Integer,List<FindPostResultDTO>> findTenPosts();
 

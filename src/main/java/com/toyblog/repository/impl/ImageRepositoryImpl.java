@@ -3,11 +3,13 @@ package com.toyblog.repository.impl;
 import com.toyblog.entity.Image;
 import com.toyblog.exception.ImageNotFoundException;
 import com.toyblog.repository.ImageRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+@Repository
 public class ImageRepositoryImpl implements ImageRepository {
     List<Image> imageList = new ArrayList<>();
 
