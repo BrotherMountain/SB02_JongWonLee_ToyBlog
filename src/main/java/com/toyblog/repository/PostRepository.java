@@ -14,8 +14,10 @@ public interface PostRepository {
 
     Post findByUserId(String id);
 
+    List<Post> findAll();
+
 //    Post findByTags(List<String> tags);
 
-//    void delete()
+    void delete(String authorId);
 
 }
