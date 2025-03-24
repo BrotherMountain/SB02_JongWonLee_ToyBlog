@@ -9,6 +9,8 @@ import com.toyblog.repository.ImageRepository;
 import com.toyblog.repository.PostImageRepository;
 import com.toyblog.repository.PostRepository;
 import com.toyblog.repository.UserRepository;
+import com.toyblog.service.ImageService;
+import com.toyblog.service.PostImageService;
 import com.toyblog.service.PostService;
 import com.toyblog.util.JwtUtil;
 import lombok.RequiredArgsConstructor;
@@ -20,10 +22,12 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class PostServiceImpl implements PostService {
+    private final ImageService imageService;
+    private final PostImageService postImageService;
+
     private final UserRepository userRepository;
     private final PostRepository postRepository;
-    private final ImageRepository imageRepository;
-    private final PostImageRepository postImageRepository;
+
     private final JwtUtil jwtUtil;
 
     @Override
@@ -38,8 +42,7 @@ public class PostServiceImpl implements PostService {
 
         //2번 postImage 저장
         for (UUID imageId : idList) {
-            PostImage postImage = new PostImage(post.getId(), imageId);
-            postImageRepository.save(postImage);
+            postImageService.save(post.getId(), imageId);
         }
 
         return post;
@@ -82,10 +85,7 @@ public class PostServiceImpl implements PostService {
         validToken(token);
         postRepository.delete(requestDTO.id());
         //image Repository 삭제, Post Image Repository 삭제
-        UUID targetId = postImageRepository.getPostImageIdByPostId(requestDTO.id());
-        if (targetId != null) {
-            postImageRepository.delete(targetId);
-        }
+        postImageService.delete(requestDTO.id());
     }
 
     private void validToken(String token) {
@@ -99,13 +99,7 @@ public class PostServiceImpl implements PostService {
         return optionalImageList.stream()
                 .filter(Optional::isPresent)
                 .map(Optional::get)
-                .map(this::saveImage)
+                .map(imageService::save)
                 .collect(Collectors.toList());
-    }
-
-    private UUID saveImage(CreateImageRequestDTO imageRequestDTO) {
-        Image image = new Image(imageRequestDTO.originalName(), imageRequestDTO.extension(), (long) imageRequestDTO.bytes().length, imageRequestDTO.bytes());
-        imageRepository.save(image);
-        return image.getId();
     }
 }

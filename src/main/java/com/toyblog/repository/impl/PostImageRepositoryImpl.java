@@ -1,7 +1,6 @@
 package com.toyblog.repository.impl;
 
 import com.toyblog.entity.PostImage;
-import com.toyblog.exception.PostImageNotFoundException;
 import com.toyblog.repository.PostImageRepository;
 import org.springframework.stereotype.Repository;
 
@@ -21,17 +20,17 @@ public class PostImageRepositoryImpl implements PostImageRepository {
 
     @Override
     public PostImage findById(UUID id) {
-        return postImageList.stream().filter(p -> p.getId().equals(id)).findFirst().orElseThrow(() -> new PostImageNotFoundException("등록된 이미지가 없습니다."));
+        return postImageList.stream().filter(p -> p.getId().equals(id)).findFirst().orElse(null);
     }
 
     @Override
     public PostImage findByPostId(UUID id) {
-        return postImageList.stream().filter(p -> p.getPostId().equals(id)).findFirst().orElseThrow(() -> new PostImageNotFoundException("등록된 이미지가 없습니다."));
+        return postImageList.stream().filter(p -> p.getPostId().equals(id)).findFirst().orElse(null);
     }
 
     @Override
     public PostImage findByImageId(UUID id) {
-        return postImageList.stream().filter(p -> p.getImageId().equals(id)).findFirst().orElseThrow(() -> new PostImageNotFoundException("등록된 이미지가 없습니다."));
+        return postImageList.stream().filter(p -> p.getImageId().equals(id)).findFirst().orElse(null);
     }
 
     @Override
