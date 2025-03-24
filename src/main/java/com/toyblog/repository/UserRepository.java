@@ -3,6 +3,8 @@ package com.toyblog.repository;
 import com.toyblog.entity.User;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface UserRepository {
     User save(User user);
@@ -11,6 +13,8 @@ public interface UserRepository {
 
     User findByEmail(String email);
 
-    User delete(String id);
+    List<User> findAll();
+
+    void delete(String id);
 
 }

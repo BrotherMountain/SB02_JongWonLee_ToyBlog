@@ -36,4 +36,8 @@ public class User {
 
         return this.id;
     }
+
+    public boolean isPresent() {
+        return false;
+    }
 }
