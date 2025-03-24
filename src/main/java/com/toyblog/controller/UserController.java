@@ -20,7 +20,7 @@ public class UserController {
         return ResponseEntity.ok(new ResponseRegisterDTO(true, "회원 가입이 완료되었습니다."));
     }
 
-    @PostMapping("/register")
+    @PostMapping("/login")
     public ResponseEntity<ResponseLoginDTO> login(LoginRequestDTO requestDTO) {
         String token = userService.login(requestDTO);
         return ResponseEntity.ok(new ResponseLoginDTO(true, token));
