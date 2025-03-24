@@ -12,7 +12,9 @@ public interface PostRepository {
 
     Post findById(UUID id);
 
-    Post findByUserId(String id);
+    Post findByTitle(String title);
+
+    Post findByAuthorId(String id);
 
     List<Post> findAll();
 
