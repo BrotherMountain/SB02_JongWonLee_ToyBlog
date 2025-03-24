@@ -3,7 +3,6 @@ package com.toyblog.entity;
 import lombok.Getter;
 
 import java.time.Instant;
-import java.util.UUID;
 
 @Getter
 public class User {
@@ -19,5 +18,22 @@ public class User {
         this.nickname = nickname;
         this.email = email;
         this.createdAt = Instant.now();
+    }
+
+    public String update(String replaceId, String replacePassword, String replaceNickname, String replaceEmail) {
+        if (replaceId != null) {
+            this.id = replaceId;
+        }
+        if (replacePassword != null) {
+            this.password = password;
+        }
+        if (replaceNickname != null) {
+            this.nickname = replaceNickname;
+        }
+        if (replaceEmail != null) {
+            this.email = replaceEmail;
+        }
+
+        return this.id;
     }
 }
