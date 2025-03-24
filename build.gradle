@@ -31,6 +31,9 @@ dependencies {
     // BCrypt 암호화를 위한 의존성
     implementation 'org.mindrot:jbcrypt:0.4'
 
+    //JSON 설치
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.2'
+
 
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-web'
