@@ -1,0 +1,57 @@
+package com.toyblog.repository.impl;
+
+import com.toyblog.entity.PostImage;
+import com.toyblog.repository.PostImageRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
+@Repository
+public class PostImageRepositoryImpl implements PostImageRepository {
+    List<PostImage> postImageList = new ArrayList<>();
+
+    @Override
+    public PostImage save(PostImage postImage) {
+        postImageList.add(postImage);
+        return postImage;
+    }
+
+    @Override
+    public PostImage findById(UUID id) {
+        return postImageList.stream().filter(p -> p.getId().equals(id)).findFirst().orElse(null);
+    }
+
+    @Override
+    public PostImage findByPostId(UUID id) {
+        return postImageList.stream().filter(p -> p.getPostId().equals(id)).findFirst().orElse(null);
+    }
+
+    @Override
+    public PostImage findByImageId(UUID id) {
+        return postImageList.stream().filter(p -> p.getImageId().equals(id)).findFirst().orElse(null);
+    }
+
+    @Override
+    public UUID getPostImageIdByPostId(UUID id) {
+        return postImageList.stream().filter(p -> p.getPostId().equals(id)).map(PostImage::getId).findFirst().orElse(null);
+    }
+
+    @Override
+    public UUID getPostImageIdByImageId(UUID id) {
+        return postImageList.stream().filter(p -> p.getImageId().equals(id)).map(PostImage::getId).findFirst().orElse(null);
+    }
+
+    @Override
+    public void update(UUID id,UUID replaceId) {
+        PostImage target = findById(id);
+        target.setImageId(replaceId);
+    }
+
+    @Override
+    public void delete(UUID id) {
+        PostImage target = findById(id);
+        postImageList.remove(target);
+    }
+}
