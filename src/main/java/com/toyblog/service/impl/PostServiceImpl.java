@@ -70,6 +70,8 @@ public class PostServiceImpl implements PostService {
     @Override
     public void delete(String token, DeletePostRequestDTO requestDTO) {
         validToken(token);
+        postRepository.delete(requestDTO.id());
+        //image Repository 삭제, Post Image Repository 삭제
     }
 
     private void validToken(String token) {

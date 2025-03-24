@@ -38,8 +38,8 @@ public class PostRepositoryImpl implements PostRepository {
     }
 
     @Override
-    public void delete(String authorId) {
-        Post target = findByAuthorId(authorId);
+    public void delete(UUID id) {
+        Post target = findById(id);
         posts.remove(target);
     }
 }

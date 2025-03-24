@@ -20,6 +20,6 @@ public interface PostRepository {
 
 //    Post findByTags(List<String> tags);
 
-    void delete(String authorId);
+    void delete(UUID id);
 
 }
